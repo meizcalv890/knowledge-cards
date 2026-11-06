@@ -1,10 +1,11 @@
 export const categories = [
-  { id: "science", name: "Science", icon: "🔬", color: "#DDF1FF" },
-  { id: "history", name: "History", icon: "🏛️", color: "#FFE8D6" },
-  { id: "geography", name: "Geography", icon: "🌍", color: "#DDF2D8" },
-  { id: "technology", name: "Technology", icon: "💻", color: "#E8DDFF" },
-  { id: "nature", name: "Nature", icon: "🌿", color: "#E4F1D9" },
-  { id: "general", name: "General", icon: "💡", color: "#FFF0C7" },
+  { id: "science", name: "Science", icon: "flask", color: "#DDF1FF" },
+  { id: "history", name: "History", icon: "landmark", color: "#FFE8D6" },
+  { id: "geography", name: "Geography", icon: "globe", color: "#DDF2D8" },
+  { id: "technology", name: "Technology", icon: "laptop", color: "#E8DDFF" },
+  { id: "nature", name: "Nature", icon: "leaf", color: "#E4F1D9" },
+  { id: "general", name: "General", icon: "lightbulb", color: "#FFF0C7" },
+  { id: "target", name: "Target", icon: "target", color: "#FFD93D" },
 ];
 
 const rawQuestions = [

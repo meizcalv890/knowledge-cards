@@ -1,8 +1,9 @@
 
-/* =========================================
+/* =====================================================
    KNOWLEDGE CARDS
-   Visual Refinement v1.1
-   ========================================= */
+   Visual Refinement v1.2
+   ===================================================== */
+
 
 /* ---------- DESIGN TOKENS ---------- */
 
@@ -11,20 +12,32 @@
   --surface: #ffffff;
   --ink: #29271f;
   --muted: #858174;
+  --muted-light: #aaa496;
 
   --yellow: #ffcf55;
   --yellow-dark: #edb632;
+  --yellow-soft: #fff0c7;
 
   --blue: #cdeeff;
+  --blue-dark: #397fa3;
+
   --pink: #ffdfeb;
+  --pink-dark: #c36b40;
+
   --purple: #e8ddff;
+  --purple-dark: #7661ae;
+
   --green: #d8f1d1;
+  --green-dark: #5b9c4e;
 
   --border: #eee7d9;
+  --border-strong: #29271f;
 
-  --shadow: 0 7px 0 rgba(42, 39, 31, 0.08);
+  --shadow: 0 7px 0 rgba(42, 39, 31, 0.07);
+  --shadow-hover: 0 11px 0 rgba(42, 39, 31, 0.08);
 
   --radius: 22px;
+  --radius-large: 28px;
 
   --icon-stroke: 1.9;
 }
@@ -36,11 +49,16 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
   font-family: "Nunito", sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 button {
@@ -58,10 +76,16 @@ button:disabled {
   cursor: not-allowed;
 }
 
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .ui-icon {
   width: 24px;
   height: 24px;
   display: block;
+  flex-shrink: 0;
   fill: none;
   stroke: currentColor;
   stroke-width: var(--icon-stroke);
@@ -73,6 +97,7 @@ button:disabled {
 /* ---------- APP SHELL ---------- */
 
 .app-shell {
+  width: 100%;
   max-width: 1120px;
   margin: auto;
   padding: 0 28px;
@@ -101,9 +126,19 @@ button:disabled {
 }
 
 .brand-icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #eead26;
   font-size: 29px;
   line-height: 1;
+}
+
+.brand-icon .ui-icon {
+  width: 27px;
+  height: 27px;
 }
 
 .brand-accent {
@@ -123,12 +158,10 @@ button:disabled {
   align-items: center;
   justify-content: center;
   gap: 8px;
-
   background: white;
   border: 1px solid var(--border);
   border-radius: 30px;
   padding: 0 14px;
-
   font-size: 13px;
   font-weight: 900;
 }
@@ -140,18 +173,22 @@ button:disabled {
   stroke-width: 2;
 }
 
+.stat-chip .ui-icon {
+  width: 17px;
+  height: 17px;
+  color: #d89b24;
+}
+
 .icon-button {
   width: 40px;
   height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   border: 1px solid var(--border);
   background: white;
   color: #6c8ba3;
   border-radius: 50%;
-
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
@@ -190,19 +227,32 @@ button:disabled {
 }
 
 
-/* ---------- HERO ---------- */
+/* =====================================================
+   HERO
+   Identitas utama dipertahankan
+   ===================================================== */
 
 .hero {
+  position: relative;
   background: #ffedbd;
   border-radius: 30px;
   min-height: 310px;
   padding: 42px 55px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 153, 32, 0.1);
+  right: -120px;
+  top: -150px;
 }
 
 .hero-copy {
@@ -243,18 +293,17 @@ h1 span {
   border: 0;
   border-radius: 13px;
   padding: 14px 22px;
-
   font-weight: 900;
   margin-top: 12px;
-
   box-shadow: 0 5px 0 #00000020;
-
   transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .primary-button:hover {
+  background: #403c31;
   transform: translateY(-3px);
   box-shadow: 0 8px 0 #00000020;
 }
@@ -262,6 +311,14 @@ h1 span {
 .primary-button:active {
   transform: translateY(2px);
   box-shadow: none;
+}
+
+.primary-button .ui-icon {
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
 }
 
 
@@ -278,11 +335,9 @@ h1 span {
   position: absolute;
   width: 130px;
   height: 170px;
-
   border: 3px solid var(--ink);
   border-radius: 18px;
   box-shadow: 5px 6px 0 var(--ink);
-
   top: 35px;
   left: 65px;
 }
@@ -300,7 +355,6 @@ h1 span {
 .card-front {
   background: white;
   transform: rotate(3deg);
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -340,10 +394,8 @@ h1 span {
   position: absolute;
   width: 225px;
   height: 225px;
-
   border: 2px dashed #d6b65f;
   border-radius: 50%;
-
   top: 8px;
   left: 20px;
 }
@@ -363,7 +415,9 @@ h1 span {
 }
 
 
-/* ---------- MODE CARDS ---------- */
+/* =====================================================
+   MODE CARDS
+   ===================================================== */
 
 .mode-grid {
   display: grid;
@@ -372,28 +426,25 @@ h1 span {
 }
 
 .mode-card {
+  position: relative;
   border: 2px solid var(--ink);
   border-radius: var(--radius);
   min-height: 220px;
   padding: 22px;
-
   text-align: left;
-
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
   box-shadow: var(--shadow);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
-
   color: var(--ink);
 }
 
 .mode-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 0 #00000012;
+  box-shadow: var(--shadow-hover);
 }
 
 .mode-card:active {
@@ -409,19 +460,15 @@ h1 span {
   background: var(--pink);
 }
 
-
-/* Icon container */
-
 .mode-icon {
-  width: 38px;
-  height: 38px;
-
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  border-radius: 11px;
-  margin-bottom: 10px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .mode-icon .ui-icon {
@@ -431,20 +478,20 @@ h1 span {
 }
 
 .flash-icon {
-  background: rgba(255, 255, 255, 0.48);
-  color: #397fa3;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--blue-dark);
 }
 
 .quiz-icon {
-  background: rgba(255, 255, 255, 0.5);
-  color: #c36b40;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--pink-dark);
 }
 
 .mode-tag {
   font-size: 9px;
   letter-spacing: 1.5px;
   font-weight: 900;
-  opacity: 0.6;
+  opacity: 0.65;
 }
 
 .mode-card strong {
@@ -464,7 +511,6 @@ h1 span {
   font-weight: 900;
   margin-top: auto;
   padding-top: 12px;
-
   transition: transform 0.2s ease;
 }
 
@@ -473,7 +519,9 @@ h1 span {
 }
 
 
-/* ---------- DASHBOARD ---------- */
+/* =====================================================
+   DASHBOARD
+   ===================================================== */
 
 .dashboard {
   margin-top: 42px;
@@ -490,46 +538,51 @@ h1 span {
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 17px;
-
   display: flex;
   flex-direction: column;
   gap: 4px;
-
   transition:
     transform 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .dashboard-card:hover {
   transform: translateY(-2px);
   border-color: #e2d7c3;
+  box-shadow: 0 5px 16px rgba(42, 39, 31, 0.04);
 }
 
 .dashboard-icon {
-  width: 31px;
-  height: 31px;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 2px;
+  justify-content: center;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  background: #fff8e7;
 }
 
 .dashboard-icon .ui-icon {
-  width: 23px;
-  height: 23px;
+  width: 22px;
+  height: 22px;
   stroke-width: 1.9;
 }
 
 .games-icon {
-  color: #7661ae;
+  color: var(--purple-dark);
+  background: #f1ecff;
 }
 
 .points-icon {
   color: #d7a12e;
+  background: #fff5d9;
 }
 
 .best-icon {
   color: #d58b40;
+  background: #fff0e0;
 }
 
 .dashboard-card strong {
@@ -558,46 +611,68 @@ h1 span {
 }
 
 
-/* =========================================
+/* =====================================================
    SETUP
-   ========================================= */
+   ===================================================== */
 
 .game-panel {
   max-width: 650px;
   margin: 10px auto 35px;
-
   background: white;
   border: 1px solid var(--border);
   border-radius: 25px;
   padding: 30px;
-
   box-shadow: var(--shadow);
 }
 
 .back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   border: 0;
   background: transparent;
   color: var(--muted);
   font-weight: 800;
   padding: 5px 0;
+  transition: color 0.2s ease;
+}
+
+.back-button:hover {
+  color: var(--ink);
+}
+
+.back-button .ui-icon {
+  width: 17px;
+  height: 17px;
 }
 
 .panel-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-size: 31px;
   font-weight: 900;
   margin: 20px 0 5px;
 }
 
+.panel-title .ui-icon {
+  width: 30px;
+  height: 30px;
+}
+
 .panel-subtitle {
   color: var(--muted);
   font-size: 13px;
+  line-height: 1.7;
   margin-bottom: 25px;
 }
 
 .option-label {
-  font-size: 12px;
+  font-size: 11px;
+  letter-spacing: 0.7px;
+  color: #777164;
   font-weight: 900;
-  margin: 23px 0 10px;
+  margin: 25px 0 11px;
   display: block;
 }
 
@@ -612,24 +687,45 @@ h1 span {
   background: white;
   border: 2px solid var(--border);
   border-radius: 13px;
-  padding: 13px 8px;
-
+  padding: 13px 10px;
   font-weight: 800;
   color: var(--ink);
   font-size: 12px;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
 
-  transition: 0.2s;
+.category-option {
+  min-height: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+}
+
+.category-option .ui-icon {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
 }
 
 .category-option:hover,
 .choice-button:hover {
   border-color: #cfc5b3;
+  transform: translateY(-1px);
 }
 
 .category-option.selected,
 .choice-button.selected {
   border-color: var(--ink);
   background: #fff0c5;
+  box-shadow: 0 3px 0 rgba(42, 39, 31, 0.06);
+}
+
+.category-option.selected .ui-icon {
+  color: #c58c22;
 }
 
 .choice-row {
@@ -641,31 +737,45 @@ h1 span {
 .choice-button {
   min-width: 75px;
   flex: 1;
+  min-height: 44px;
 }
 
 .start-game {
   width: 100%;
   margin-top: 28px;
+  min-height: 49px;
 }
 
 
-/* =========================================
-   GAME
-   ========================================= */
+/* =====================================================
+   GAME HEADER & PROGRESS
+   ===================================================== */
 
 .game-header {
   max-width: 700px;
   margin: 0 auto 25px;
+  padding: 0 2px;
 }
 
 .game-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  gap: 12px;
   font-size: 12px;
   font-weight: 900;
   margin-bottom: 12px;
+}
+
+.game-meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.game-meta .ui-icon {
+  width: 16px;
+  height: 16px;
 }
 
 .progress-track {
@@ -680,8 +790,13 @@ h1 span {
   width: 0;
   background: #efbb42;
   border-radius: inherit;
-  transition: width 0.3s;
+  transition: width 0.3s ease;
 }
+
+
+/* =====================================================
+   FLASHCARDS
+   ===================================================== */
 
 .game-card-wrap {
   max-width: 590px;
@@ -692,7 +807,6 @@ h1 span {
 .flashcard {
   min-height: 330px;
   position: relative;
-
   transform-style: preserve-3d;
   transition: transform 0.55s;
   cursor: pointer;
@@ -705,18 +819,15 @@ h1 span {
 .card-face {
   position: absolute;
   inset: 0;
-
   border: 2px solid var(--ink);
   border-radius: 27px;
   box-shadow: 0 8px 0 #00000012;
-
   backface-visibility: hidden;
-
+  -webkit-backface-visibility: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   padding: 30px;
   text-align: center;
 }
@@ -742,6 +853,7 @@ h1 span {
   max-width: 460px;
   margin: 20px 0;
   font-weight: 900;
+  line-height: 1.35;
 }
 
 .card-face p {
@@ -766,12 +878,28 @@ h1 span {
 }
 
 .action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   border: 2px solid var(--ink);
   border-radius: 13px;
   padding: 13px 19px;
-
   font-weight: 900;
   background: white;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.action-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 0 rgba(42, 39, 31, 0.08);
+}
+
+.action-button .ui-icon {
+  width: 18px;
+  height: 18px;
 }
 
 .action-button:disabled {
@@ -788,19 +916,17 @@ h1 span {
 }
 
 
-/* =========================================
+/* =====================================================
    QUIZ
-   ========================================= */
+   ===================================================== */
 
 .quiz-question {
   max-width: 700px;
   margin: 0 auto;
-
   background: white;
   border: 2px solid var(--ink);
   border-radius: 25px;
   padding: 30px;
-
   text-align: center;
   box-shadow: var(--shadow);
 }
@@ -808,6 +934,7 @@ h1 span {
 .quiz-question h2 {
   font-size: 26px;
   font-weight: 900;
+  line-height: 1.4;
   margin: 20px 0 30px;
 }
 
@@ -818,22 +945,38 @@ h1 span {
 }
 
 .answer-button {
+  position: relative;
   background: #fff;
   border: 2px solid var(--border);
   border-radius: 14px;
-
   min-height: 70px;
-  padding: 12px;
-
+  padding: 13px;
   font-weight: 800;
   color: var(--ink);
-
-  transition: 0.2s;
+  line-height: 1.5;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .answer-button:hover:not(:disabled) {
   border-color: var(--ink);
+  background: #fffdf8;
   transform: translateY(-2px);
+}
+
+.answer-button > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  margin-right: 7px;
+  border-radius: 8px;
+  background: #f5f1e8;
+  font-size: 11px;
+  font-weight: 900;
 }
 
 .answer-button.correct {
@@ -841,9 +984,19 @@ h1 span {
   border-color: #5b9c4e;
 }
 
+.answer-button.correct > span {
+  background: #c2e6b9;
+  color: #356d2d;
+}
+
 .answer-button.wrong {
   background: var(--pink);
   border-color: #d46d8c;
+}
+
+.answer-button.wrong > span {
+  background: #ffc5d7;
+  color: #a33f60;
 }
 
 .answer-button:disabled {
@@ -856,29 +1009,58 @@ h1 span {
   padding: 15px 5px 0;
   font-size: 13px;
   font-weight: 900;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.feedback .ui-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 17px;
+  height: 17px;
+  margin-right: 5px;
+}
+
+.feedback .correct-icon {
+  color: var(--green-dark);
+}
+
+.feedback .wrong-icon {
+  color: #c95e7e;
 }
 
 
-/* =========================================
+/* =====================================================
    RESULTS
-   ========================================= */
+   ===================================================== */
 
 .result-panel {
   max-width: 650px;
   margin: 15px auto;
-
   text-align: center;
   background: white;
-
   border: 1px solid var(--border);
   border-radius: 27px;
   padding: 35px;
-
   box-shadow: var(--shadow);
 }
 
 .result-icon {
-  font-size: 55px;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff3d2;
+  border-radius: 23px;
+  color: #d89b24;
+}
+
+.result-icon .ui-icon {
+  width: 39px;
+  height: 39px;
+  stroke-width: 1.8;
 }
 
 .result-panel h1 {
@@ -886,16 +1068,18 @@ h1 span {
   letter-spacing: -1px;
 }
 
+.result-caption {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
 .result-score {
   font-size: 65px;
   font-weight: 900;
   color: #d99d23;
   line-height: 1.2;
-}
-
-.result-caption {
-  color: var(--muted);
-  font-size: 12px;
+  margin-top: 20px;
 }
 
 .result-stats {
@@ -907,6 +1091,7 @@ h1 span {
 
 .result-stat {
   background: var(--bg);
+  border: 1px solid #f1ebde;
   border-radius: 14px;
   padding: 14px 5px;
 }
@@ -927,16 +1112,17 @@ h1 span {
   gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 
-/* =========================================
+/* =====================================================
    RESPONSIVE
-   ========================================= */
+   ===================================================== */
 
 @media (max-width: 800px) {
   .hero {
-    padding: 35px 35px;
+    padding: 35px;
   }
 
   .hero-art {
@@ -965,6 +1151,8 @@ h1 span {
   }
 
   .brand-icon {
+    width: 29px;
+    height: 29px;
     font-size: 25px;
   }
 
@@ -998,8 +1186,8 @@ h1 span {
   }
 
   .dashboard-icon {
-    width: 27px;
-    height: 27px;
+    width: 29px;
+    height: 29px;
   }
 
   .dashboard-icon .ui-icon {
@@ -1027,6 +1215,10 @@ h1 span {
     min-height: 310px;
   }
 
+  .card-face {
+    padding: 23px 17px;
+  }
+
   .answer-grid {
     grid-template-columns: 1fr;
   }
@@ -1041,6 +1233,10 @@ h1 span {
 
   .result-panel {
     padding: 28px 18px;
+  }
+
+  .result-score {
+    font-size: 56px;
   }
 }
 
@@ -1075,12 +1271,24 @@ h1 span {
   .dashboard-card {
     padding: 10px;
   }
+
+  .dashboard-card strong {
+    font-size: 19px;
+  }
+
+  .result-stats {
+    gap: 6px;
+  }
+
+  .result-stat strong {
+    font-size: 19px;
+  }
 }
 
 
-/* =========================================
+/* =====================================================
    ACCESSIBILITY
-   ========================================= */
+   ===================================================== */
 
 @media (prefers-reduced-motion: reduce) {
   *,
