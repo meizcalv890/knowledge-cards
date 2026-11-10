@@ -25,47 +25,11 @@ A playful general knowledge game featuring interactive flashcards and multiple-c
 - LocalStorage
 - Web Audio API
 
-## Getting Started
-
-1. Download or clone this repository.
-2. Open the project folder in VS Code.
-3. Run the project using a local development server.
-
-Recommended: VS Code Live Server.
-
-Do not open index.html directly using file:// because the application uses JavaScript ES Modules.
-
-## Project Structure
-
-```text
-knowledge-cards/
-├── index.html
-├── README.md
-├── assets/
-│   └── sounds/
-├── css/
-│   └── style.css
-└── js/
-    ├── data.js
-    ├── storage.js
-    └── app.js
-```
-
 ## Data Storage
 
 Game statistics and sound preferences are stored locally in the browser.
 
 No account or backend is required.
-
-## Deployment
-
-The project can be deployed using GitHub Pages.
-
-Go to:
-
-Settings → Pages → Deploy from a branch
-
-Select the main branch and root directory.
 
 ## Version
 
